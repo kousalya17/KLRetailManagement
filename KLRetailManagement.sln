@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRMDataManager", "KRMDataManager\KRMDataManager.csproj", "{C7F38C36-C64F-4C77-B663-E8BD7B474AC3}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KRMData", "KRMData\KRMData.sqlproj", "{5814583C-62C7-4772-B727-65C15ED0E1C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{C7F38C36-C64F-4C77-B663-E8BD7B474AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7F38C36-C64F-4C77-B663-E8BD7B474AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7F38C36-C64F-4C77-B663-E8BD7B474AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
