@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRMDataManager", "KRMDataMa
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KRMData", "KRMData\KRMData.sqlproj", "{5814583C-62C7-4772-B727-65C15ED0E1C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRMDesktopUI", "KRMDesktopUI\KRMDesktopUI.csproj", "{626AD794-0266-422B-AE90-A2A1602F2141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5814583C-62C7-4772-B727-65C15ED0E1C9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{626AD794-0266-422B-AE90-A2A1602F2141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{626AD794-0266-422B-AE90-A2A1602F2141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{626AD794-0266-422B-AE90-A2A1602F2141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{626AD794-0266-422B-AE90-A2A1602F2141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
