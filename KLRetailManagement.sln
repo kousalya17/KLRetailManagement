@@ -9,6 +9,10 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KRMData", "KRMData\KRMData.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRMDesktopUI", "KRMDesktopUI\KRMDesktopUI.csproj", "{626AD794-0266-422B-AE90-A2A1602F2141}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRMDataManager.Library", "KRMDataManager.Library\KRMDataManager.Library.csproj", "{045DC3D3-E5B5-4590-BB09-4CA0E7E4C849}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KRMDesktopUI.Library", "KRMDesktopUI.Library\KRMDesktopUI.Library.csproj", "{8D436760-2752-4046-8E48-CED6AAEF8D6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{626AD794-0266-422B-AE90-A2A1602F2141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{626AD794-0266-422B-AE90-A2A1602F2141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{626AD794-0266-422B-AE90-A2A1602F2141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{045DC3D3-E5B5-4590-BB09-4CA0E7E4C849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{045DC3D3-E5B5-4590-BB09-4CA0E7E4C849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{045DC3D3-E5B5-4590-BB09-4CA0E7E4C849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{045DC3D3-E5B5-4590-BB09-4CA0E7E4C849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D436760-2752-4046-8E48-CED6AAEF8D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D436760-2752-4046-8E48-CED6AAEF8D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D436760-2752-4046-8E48-CED6AAEF8D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D436760-2752-4046-8E48-CED6AAEF8D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

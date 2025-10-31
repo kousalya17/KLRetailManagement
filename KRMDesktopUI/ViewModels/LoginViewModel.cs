@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using KRMDesktopUI.Helpers;
+using KRMDesktopUI.Library.Api;
 using System;
 using System.Threading.Tasks;
 
@@ -86,6 +86,8 @@ namespace KRMDesktopUI.ViewModels
             {
                 ErrorMessage = "";
                 var result = await _apiHelper.Authenticate(UserName, Password);
+
+                await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
             }
             catch(Exception ex)
             {

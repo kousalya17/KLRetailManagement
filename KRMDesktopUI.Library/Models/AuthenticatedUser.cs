@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KRMDesktopUI.Models
+namespace KRMDesktopUI.Library.Models
 {
     public class AuthenticatedUser
     {
