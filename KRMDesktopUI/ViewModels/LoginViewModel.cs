@@ -1,4 +1,7 @@
 ﻿using Caliburn.Micro;
+using KRMDesktopUI.Helpers;
+using System;
+using System.Threading.Tasks;
 
 namespace KRMDesktopUI.ViewModels
 {
@@ -6,6 +9,12 @@ namespace KRMDesktopUI.ViewModels
     {
         private string _userName;
         private string _password;
+        private IAPIHelper _apiHelper;
+
+        public LoginViewModel(IAPIHelper apiHelper)
+        {
+            _apiHelper = apiHelper; 
+        }
 
         public string UserName
         {
@@ -14,6 +23,7 @@ namespace KRMDesktopUI.ViewModels
             {
                 _userName = value;
                 NotifyOfPropertyChange(() => UserName);
+                NotifyOfPropertyChange(() => CanLogIn);
             }
         }
 
@@ -24,6 +34,7 @@ namespace KRMDesktopUI.ViewModels
             {
                 _password = value;
                 NotifyOfPropertyChange(() => Password);
+                NotifyOfPropertyChange(() => CanLogIn);
             }
         }
 
@@ -42,8 +53,16 @@ namespace KRMDesktopUI.ViewModels
             }
         }
 
-        public void LogIn(string username, string password)
+        public async Task LogIn()
         {
+            try
+            {
+                var result = await _apiHelper.Authenticate(UserName, Password);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
