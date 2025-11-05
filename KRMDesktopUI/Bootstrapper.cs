@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using KRMDesktopUI.Helpers;
 using KRMDesktopUI.Library.Api;
 using KRMDesktopUI.Library.Models;
 using KRMDesktopUI.ViewModels;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace KRMDesktopUI
 {
@@ -16,6 +18,9 @@ namespace KRMDesktopUI
         public Bootstrapper()
         {
             Initialize();
+
+            ConventionManager.AddElementConvention<PasswordBox>(
+                PasswordBoxHelper.BoundPasswordProperty, "Password", "PasswordChanged");
         }
 
         protected override void Configure()
