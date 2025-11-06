@@ -32,7 +32,13 @@
             <ListBox x:Name="Products" 
                      VerticalAlignment="Stretch" 
                      FontSize="16"
-                     Margin="0 10 0 0"/>
+                     Margin="0 10 0 0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ProductName}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </DockPanel>
 
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Margin="20 0">
