@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using KRMDesktopUI.Library.Api;
+using KRMDesktopUI.Library.Helpers;
 using KRMDesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace KRMDesktopUI.ViewModels
         private int _itemQuantity = 1;
         private BindingList<CartItemModel> _cart = new BindingList<CartItemModel>();
         private IProductEndpoint _productEndpoint;
+        private IConfigHelper _configHelper;
         private ProductModel _selectedProduct;
 
-        public SalesViewModel(IProductEndpoint productEndpoint) 
+        public SalesViewModel(IProductEndpoint productEndpoint,IConfigHelper configHelper) 
         {
             _productEndpoint = productEndpoint;
+            _configHelper = configHelper;
         }
 
         protected override async void OnViewLoaded(Object view)
@@ -77,26 +80,47 @@ namespace KRMDesktopUI.ViewModels
         {
             get
             {
-                decimal subtotal = 0;
-                foreach(var item in Cart)
-                {
-                    subtotal += (item.Product.RetailPrice * item.QuantityInCart);
-                }
-                return subtotal.ToString("C");
+                return calculateSubtotal().ToString("C");
             }
         }
+        public decimal calculateSubtotal()
+        {
+            decimal subtotal = 0;
+            foreach (var item in Cart)
+            {
+                subtotal += (item.Product.RetailPrice * item.QuantityInCart);
+            }
+            return subtotal;
+        }
+
         public string Tax
         {
             get
             {
-                return "$0.00";
+                return calculateTax().ToString("C");
             }
         }
+
+        public decimal calculateTax()
+        {
+            decimal taxAmount = 0;
+            decimal taxrate = _configHelper.GetTaxRate()/100;
+            foreach (var item in Cart)
+            {
+                if(item.Product.IsTaxable)
+                {
+                    taxAmount += (item.Product.RetailPrice * item.QuantityInCart * taxrate);
+                }
+            }
+            return taxAmount;
+        }
+
         public string Total
         {
             get
             {
-                return "$0.00";
+                decimal total = calculateSubtotal() + calculateTax();
+                return total.ToString("C");
             }
         }
 
@@ -135,7 +159,8 @@ namespace KRMDesktopUI.ViewModels
             SelectedProduct.QuantityInStock -= ItemQuantity;
             ItemQuantity = 1;
             NotifyOfPropertyChange(() => SubTotal);
-            NotifyOfPropertyChange(() => Cart);
+            NotifyOfPropertyChange(() => Tax);
+            NotifyOfPropertyChange(() => Total);
         }
 
         public bool canRemoveToCart
@@ -151,6 +176,8 @@ namespace KRMDesktopUI.ViewModels
         public void RemoveToCart()
         {
             NotifyOfPropertyChange(() => SubTotal);
+            NotifyOfPropertyChange(() => Tax);
+            NotifyOfPropertyChange(() => Total);
         }
 
         public bool canCheckOut
