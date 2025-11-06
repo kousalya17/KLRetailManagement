@@ -13,9 +13,10 @@ namespace KRMDesktopUI.ViewModels
     public class SalesViewModel : Screen
     {
         private BindingList<ProductModel> _products;
-        private int _itemQuantity;
-        private BindingList<string> _cart;
+        private int _itemQuantity = 1;
+        private BindingList<CartItemModel> _cart = new BindingList<CartItemModel>();
         private IProductEndpoint _productEndpoint;
+        private ProductModel _selectedProduct;
 
         public SalesViewModel(IProductEndpoint productEndpoint) 
         {
@@ -42,7 +43,17 @@ namespace KRMDesktopUI.ViewModels
                 NotifyOfPropertyChange(() => Products);
             }
         }
-        public BindingList<string> Cart
+
+        public ProductModel SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set 
+            {
+                _selectedProduct = value;
+                NotifyOfPropertyChange(() => SelectedProduct);
+            }
+        }
+        public BindingList<CartItemModel> Cart
         {
             get { return _cart; }
             set 
@@ -59,13 +70,19 @@ namespace KRMDesktopUI.ViewModels
             {
                 _itemQuantity = value;
                 NotifyOfPropertyChange(() => ItemQuantity);
+                NotifyOfPropertyChange(() => CanAddToCart);
             }
         }
         public string SubTotal
         {
             get
             {
-                return "$0.00";
+                decimal subtotal = 0;
+                foreach(var item in Cart)
+                {
+                    subtotal += (item.Product.RetailPrice * item.QuantityInCart);
+                }
+                return subtotal.ToString("C");
             }
         }
         public string Tax
@@ -88,14 +105,37 @@ namespace KRMDesktopUI.ViewModels
             get
             {
                 bool result = false;
-
+                if(ItemQuantity>0 && SelectedProduct?.QuantityInStock >= ItemQuantity)
+                {
+                    result = true;
+                }
                 return result;
             }
         }
 
         public void AddToCart()
         {
+            CartItemModel existingitem = Cart.FirstOrDefault(x=>x.Product == SelectedProduct);
+            if (existingitem != null)
+            {
+                existingitem.QuantityInCart += ItemQuantity;
+                Cart.Remove(existingitem);
+                Cart.Add(existingitem);
+            }
+            else
+            {
 
+                CartItemModel item = new CartItemModel
+                {
+                    Product = SelectedProduct,
+                    QuantityInCart = ItemQuantity
+                };
+                Cart.Add(item);
+            }
+            SelectedProduct.QuantityInStock -= ItemQuantity;
+            ItemQuantity = 1;
+            NotifyOfPropertyChange(() => SubTotal);
+            NotifyOfPropertyChange(() => Cart);
         }
 
         public bool canRemoveToCart
@@ -110,7 +150,7 @@ namespace KRMDesktopUI.ViewModels
 
         public void RemoveToCart()
         {
-
+            NotifyOfPropertyChange(() => SubTotal);
         }
 
         public bool canCheckOut
