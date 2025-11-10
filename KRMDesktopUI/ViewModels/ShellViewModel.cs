@@ -9,17 +9,15 @@ namespace KRMDesktopUI.ViewModels
     {
         private IEventAggregator _events;
         private SalesViewModel _saleVM;
-        private SimpleContainer _container;
 
         public ShellViewModel(IEventAggregator events, SalesViewModel saleVM, SimpleContainer container)
         {
             _events = events;
             _saleVM = saleVM;
-            _container = container;
 
             _events.Subscribe(this);
 
-            ActivateItemAsync(_container.GetInstance<LoginViewModel>());
+            ActivateItemAsync(IoC.Get<LoginViewModel>());
         }
 
         public Task HandleAsync(LogOnEvent message, CancellationToken cancellationToken)

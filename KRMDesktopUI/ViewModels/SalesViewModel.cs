@@ -54,6 +54,7 @@ namespace KRMDesktopUI.ViewModels
             {
                 _selectedProduct = value;
                 NotifyOfPropertyChange(() => SelectedProduct);
+                NotifyOfPropertyChange(() => CanAddToCart);
             }
         }
         public BindingList<CartItemModel> Cart
@@ -83,6 +84,7 @@ namespace KRMDesktopUI.ViewModels
                 return calculateSubtotal().ToString("C");
             }
         }
+
         public decimal calculateSubtotal()
         {
             decimal subtotal = 0;
@@ -105,13 +107,10 @@ namespace KRMDesktopUI.ViewModels
         {
             decimal taxAmount = 0;
             decimal taxrate = _configHelper.GetTaxRate()/100;
-            foreach (var item in Cart)
-            {
-                if(item.Product.IsTaxable)
-                {
-                    taxAmount += (item.Product.RetailPrice * item.QuantityInCart * taxrate);
-                }
-            }
+            taxAmount = Cart
+                .Where(x => x.Product.IsTaxable)
+                .Sum(x => x.Product.RetailPrice * x.QuantityInCart * taxrate);
+
             return taxAmount;
         }
 
